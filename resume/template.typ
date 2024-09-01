@@ -1,13 +1,19 @@
 // This function gets your whole document as its `body` and formats
 // it as an article in the style of the IEEE.
-#let ieee(
+#let iml-resume(
   // The paper's title.
   title: [Paper Title],
 
   // An array of authors. For each author you can specify a name,
   // department, organization, location, and email. Everything but
   // but the name is optional.
-  authors: (),
+  authors: ((
+    name: "青木 隆史",
+    department: [],
+    organization: [],
+    location: [],
+    email: "",
+  ),),
 
   // The paper's abstract. Can be omitted if you don't have one.
   abstract: none,
@@ -29,9 +35,6 @@
   set document(title: title, author: authors.map(author => author.name))
 
   // Set the body font.
-  // set text(font: "STIX Two Text", size: 10pt)
-  // // set text(font: "Noto Serif CJK JP")
-  // show regex("[\p{scx:Han}\p{scx:Hira}\p{scx:Kana}]"): set text(font: "Noto Serif CJK JP")
   set text(font: "Noto Serif CJK JP")
   show emph: set text(font: "Noto Sans CJK JP")
 
@@ -83,7 +86,7 @@
   set list(indent: 10pt, body-indent: 9pt)
 
   // Configure headings.
-  set heading(numbering: "I.A.1.")
+  set heading(numbering: "1.1.1")
   // set heading(numbering: "1.1.1")
   show heading: it => locate(loc => {
     // Find out the final number of the heading counter.
@@ -105,7 +108,7 @@
       // #show: smallcaps
       #v(20pt, weak: true)
       #if it.numbering != none and not is-ack {
-        numbering("1", deepest)
+        numbering("1", levels.first())
         h(7pt, weak: true)
       }
       #it.body
@@ -116,7 +119,7 @@
       // #set text(style: "italic")
       #v(10pt, weak: true)
       #if it.numbering != none {
-        numbering("1.1", deepest)
+        numbering("1.1", levels.at(0), levels.at(1))
         h(7pt, weak: true)
       }
       #it.body
@@ -124,7 +127,7 @@
     ] else [
       // Third level headings are run-ins too, but different.
       #if it.level == 3 {
-        numbering("1.1.1", deepest)
+        numbering("1.1.1", levels.at(0), levels.at(1), levels.at(2))
         [ ]
       }
       // _#(it.body):_
@@ -138,36 +141,7 @@
   align(center, text(15pt, title))
   v(5.35mm, weak: true)
 
-  // Display the authors list.
-  // for i in range(calc.ceil(authors.len() / 3)) {
-  //   let end = calc.min((i + 1) * 3, authors.len())
-  //   let is-last = authors.len() == end
-  //   let slice = authors.slice(i * 3, end)
-  //   grid(
-  //     columns: slice.len() * (1fr,),
-  //     gutter: 12pt,
-  //     ..slice.map(author => align(center, {
-  //       text(12pt, author.name)
-  //       if "department" in author [
-  //         \ #emph(author.department)
-  //       ]
-  //       if "organization" in author [
-  //         \ #emph(author.organization)
-  //       ]
-  //       if "location" in author [
-  //         \ #author.location
-  //       ]
-  //       if "email" in author [
-  //         \ #link("mailto:" + author.email)
-  //       ]
-  //     }))
-  //   )
-
-  //   if not is-last {
-  //     v(16pt, weak: true)
-  //   }
-  // }
-  align(center, text(11pt, "青木 隆史"))
+  align(center, text(11pt, authors.map(author => author.name).join(", ")))
  
   v(40pt, weak: true)
 
