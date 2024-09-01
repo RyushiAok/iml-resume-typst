@@ -8,7 +8,7 @@
   // department, organization, location, and email. Everything but
   // but the name is optional.
   authors: ((
-    name: "青木 隆史",
+    name: "",
     department: [],
     organization: [],
     location: [],
