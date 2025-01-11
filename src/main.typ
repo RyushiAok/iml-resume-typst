@@ -1,15 +1,11 @@
-#import "template.typ": *
+#import "template/iml-resume.typ": *
 
 #show: iml-resume.with(
   title: [知的機構研究室 #linebreak() レジュメテンプレート（Typst版）],
   bibliography-file: "refs.bib",
-  authors: ((
-    name: "姓 名",
-    department: [],
-    organization: [],
-    location: [],
-    email: "",
-  ),),
+  authors: (
+    (name: "姓 名", department: [], organization: [], location: [], email: ""),
+  ),
 )
 
 = はじめに
@@ -24,7 +20,7 @@
 
 その話を聞いた人々はたいそうおどろきました。たいへんなうわさになって、たちまちこのめずらしい布の話は王さまの耳にも入りました。
 
-「そんな布があるのか。わくわくするわい。」と、服が大好きな王さまは思いました。「もしわしがその布でできた服を着れば、けらいの中からやく立たずの人間や、バカな人間が見つけられるだろう。それで服が見えるかしこいものばかり集めれば、この国ももっとにぎやかになるにちがいない。さっそくこの布で服を作らせよう。」@THE_EMPERORS_NEW_SUIT
+「そんな布があるのか。わくわくするわい。」と、服が大好きな王さまは思いました。「もしわしがその布でできた服を着れば、けらいの中からやく立たずの人間や、バカな人間が見つけられるだろう。それで服が見えるかしこいものばかり集めれば、この国ももっとにぎやかになるにちがいない。さっそくこの布で服を作らせよう。」// @THE_EMPERORS_NEW_SUIT
 
 = Methods
 
@@ -32,7 +28,7 @@
 
 #lorem(45)
 
-Pretraining on the Test Set Is All You Need @schaeffer2023pretraining
+Pretraining on the Test Set Is All You Need// @schaeffer2023pretraining
 
 
 === Detail

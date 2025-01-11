@@ -97,7 +97,7 @@
       1
     }
 
-    set text(10pt, weight: 400, font: "MS PGothic")
+    // set text(10pt, weight: 400, font: "MS PGothic")
     set par(first-line-indent: 0em) // 2 Methods
     if it.level == 1 [
       // First-level headings are centered smallcaps.
@@ -165,9 +165,9 @@
   set text(size: 10pt)
   body
 
-  // Display bibliography.
-  if bibliography-file != none {
-    show bibliography: set text(8pt)
-    bibliography(bibliography-file, title: text(10pt)[References], style: "ieee")
-  }
+  // // Display bibliography.
+  // if bibliography-file != none {
+  //   show bibliography: set text(8pt)
+  //   bibliography(bibliography-file, title: text(10pt)[References], style: "ieee")
+  // }
 }
