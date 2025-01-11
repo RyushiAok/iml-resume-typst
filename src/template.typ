@@ -3,33 +3,21 @@
 #let iml-resume(
   // The paper's title.
   title: [Paper Title],
-
   // An array of authors. For each author you can specify a name,
   // department, organization, location, and email. Everything but
   // but the name is optional.
-  authors: ((
-    name: "",
-    department: [],
-    organization: [],
-    location: [],
-    email: "",
-  ),),
-
+  authors: ((name: "", department: [], organization: [], location: [], email: ""),),
   // The paper's abstract. Can be omitted if you don't have one.
   abstract: none,
-
   // A list of index terms to display after the abstract.
   index-terms: (),
-
   // The article's paper size. Also affects the margins.
   paper-size: "a4",
-
   // The path to a bibliography file if you want to cite some external
   // works.
   bibliography-file: none,
-
   // The paper's content.
-  body
+  body,
 ) = {
   // Set document metadata.
   set document(title: title, author: authors.map(author => author.name))
@@ -45,19 +33,15 @@
   set page(
     paper: paper-size,
     // The margins depend on the paper size.
-    margin: if paper-size == "a4" { 
+    margin: if paper-size == "a4" {
       (top: 25mm, bottom: 20mm, x: 15mm)
-    } else { 
-      (
-        x: (50pt / 216mm) * 100%,
-        top: (55pt / 279mm) * 100%,
-        bottom: (64pt / 279mm) * 100%,
-      )
+    } else {
+      (x: (50pt / 216mm) * 100%, top: (55pt / 279mm) * 100%, bottom: (64pt / 279mm) * 100%)
     },
     header: [
       #set text(8pt, baseline: 5pt)
       #smallcaps[*YYYY年度 卒業論文発表会（YYYY年MM月DD日）*]
-      #h(1fr) 
+      #h(1fr)
       *知的機構研究室*
       #line(length: 100%, stroke: 0.5pt)
     ],
@@ -71,10 +55,7 @@
   show ref: it => {
     if it.element != none and it.element.func() == math.equation {
       // Override equation references.
-      link(it.element.location(), numbering(
-        it.element.numbering,
-        ..counter(math.equation).at(it.element.location())
-      ))
+      link(it.element.location(), numbering(it.element.numbering, ..counter(math.equation).at(it.element.location())))
     } else {
       // Other references as usual.
       it
@@ -142,7 +123,7 @@
   v(5.35mm, weak: true)
 
   align(center, text(11pt, authors.map(author => author.name).join(", ")))
- 
+
   v(40pt, weak: true)
 
   // Start two column mode and configure paragraph properties.
@@ -165,9 +146,9 @@
   set text(size: 10pt)
   body
 
-  // // Display bibliography.
-  // if bibliography-file != none {
-  //   show bibliography: set text(8pt)
-  //   bibliography(bibliography-file, title: text(10pt)[References], style: "ieee")
-  // }
+  // Display bibliography.
+  if bibliography-file != none {
+    show bibliography: set text(8pt)
+    bibliography(bibliography-file, title: text(10pt)[References], style: "ieee")
+  }
 }
