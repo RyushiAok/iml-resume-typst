@@ -1,0 +1,11 @@
+{
+  "plugins": {
+    "typst": true
+  },
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+    "preset-ja-technical-writing": true
+  }
+}

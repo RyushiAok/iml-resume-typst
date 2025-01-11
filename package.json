@@ -1,0 +1,19 @@
+{
+  "name": "iml-resume-typst",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "textlint src/main.typ"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "textlint": "^14.4.2",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-plugin-typst": "^1.1.0",
+    "textlint-rule-preset-ja-technical-writing": "^12.0.2"
+  }
+}
