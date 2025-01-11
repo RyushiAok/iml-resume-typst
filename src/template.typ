@@ -69,7 +69,8 @@
   // Configure headings.
   set heading(numbering: "1.1.1")
   // set heading(numbering: "1.1.1")
-  show heading: it => locate(loc => {
+  show heading: it => context {
+    let loc = here()
     // Find out the final number of the heading counter.
     let levels = counter(heading).at(loc)
     let deepest = if levels != () {
@@ -115,7 +116,7 @@
       #it.body
       #v(10pt, weak: true)
     ]
-  })
+  }
 
   // Display the paper's title.
   v(3pt, weak: true)
@@ -128,8 +129,7 @@
 
   // Start two column mode and configure paragraph properties.
   show: columns.with(2, gutter: 12pt)
-  set par(justify: true, first-line-indent: 1em)
-  show par: set block(spacing: 0.65em)
+  set par(justify: true, first-line-indent: 1em, spacing: 0.65em)
 
   // Display abstract and index terms.
   if abstract != none [
